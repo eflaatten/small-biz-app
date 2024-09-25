@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container } from '@mui/material';
-import { addListing } from '../redux/actions';
 
-const AddNewListing = () => {
+const AddNewListing = ({ addListing }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
@@ -10,7 +9,15 @@ const AddNewListing = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addListing({ name, description, address, hours });
+    const newListing = {
+      id: Date.now(), // Generate a unique ID
+      name,
+      description,
+      address,
+      hours
+    };
+    addListing(newListing);
+
     setName('');
     setDescription('');
     setAddress('');
@@ -26,24 +33,28 @@ const AddNewListing = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           style={textFieldStyle}
+          required
         />
         <TextField
           label="Address"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           style={textFieldStyle}
+          required
         />
         <TextField
           label="Hours"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
           style={textFieldStyle}
+          required
         />
         <TextField
           label="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           style={textFieldStyle}
+          required
         />
         <Button color='primary' variant='contained' type='submit' style={{width: '150%'}}>Add</Button>
       </form>

@@ -1,8 +1,18 @@
+import cookie from 'cookie';
+
+const checkAuth = () => {
+  const cookies = cookie.parse(document.cookie);
+  return cookies.loggedIn === "true";
+}
+
 const state = {
-  user: {
+  user: 
+    {
     username: "admin",
     password: "admin@12345",
-  },
+    isLoggedIn: checkAuth(),
+    },
+    
   listings: [
     {
       id: 1,

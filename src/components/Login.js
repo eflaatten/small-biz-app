@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import store from "../redux/store";
 
 const Login = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -10,16 +11,17 @@ const Login = ({ setLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (username === "admin" && password === "admin@12345") {
+    const { user } = store.getState();
+    if (username === user.username && password === user.password) {
       setLoggedIn(true);
-      console.log("show toast success attempt")
       
       const setCookie = (name, value, maxAge) => {
         document.cookie = `${name}=${value};max-age=${maxAge}`;
       };
       setCookie("loggedIn", true, 60 * 1000);
-      toast.success("Login successful");
+
       navigate("/listings");
+      
     } else {
       toast.error("Invalid username or password");
     }

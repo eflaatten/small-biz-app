@@ -1,14 +1,12 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ isLoggedIn, logout }) => {
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     logout();
-    navigate("/login");
   };
 
   
@@ -49,4 +47,5 @@ export default NavBar;
     borderRadius: "4px",
     letterSpacing: "0.02857em",
     textTransform: "uppercase",
+    cursor: "pointer",
   };

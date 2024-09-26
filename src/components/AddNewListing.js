@@ -7,10 +7,14 @@ const AddNewListing = ({ addListing }) => {
   const [address, setAddress] = useState('');
   const [hours, setHours] = useState('');
 
+  const randomId = () => {
+    return Math.floor(Math.random() * 1000000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newListing = {
-      id: Date.now(), // Generate a unique ID
+      id: randomId(), 
       name,
       description,
       address,

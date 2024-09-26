@@ -6,6 +6,7 @@ import { logout } from "../redux/actions";
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    username: state.user.username,
   }
 }
 

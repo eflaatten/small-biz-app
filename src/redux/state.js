@@ -5,6 +5,10 @@ const checkAuth = () => {
   return cookies.loggedIn === "true";
 }
 
+const randomId = () => {
+  return Math.floor(Math.random() * 1000000);
+}
+
 const state = {
   user: 
     {
@@ -12,10 +16,10 @@ const state = {
     password: "admin@12345",
     isLoggedIn: checkAuth(),
     },
-    
+
   listings: [
     {
-      id: 1,
+      id: randomId(),
       name: "Mozart's Coffee Roasters",
       description:
         "Lakeside cafe offering coffee, teas, and delicious desserts with a view.",
@@ -26,7 +30,7 @@ const state = {
       zip: "78703",
     },
     {
-      id: 2,
+      id: randomId(),
       name: "BookPeople",
       description:
         "Austin's largest independent bookstore, offering a great selection of books and gifts.",
@@ -37,7 +41,7 @@ const state = {
       zip: "78703",
     },
     {
-      id: 3,
+      id: randomId(),
       name: "Antonelli's Cheese Shop",
       description:
         "A gourmet cheese shop offering tastings, classes, and a wide selection of artisanal cheeses.",
@@ -48,7 +52,7 @@ const state = {
       zip: "78751",
     },
     {
-      id: 4,
+      id: randomId(),
       name: "Waterloo Records",
       description:
         "Iconic independent record store selling new and used vinyl, CDs, and more.",

@@ -7,6 +7,8 @@ const ListingDetails = () => {
   const { id } = useParams();
   const listing = useSelector(state => state.listings.find(listing => listing.id === parseInt(id, 10)));
 
+  console.log('ListingDetails - Current listing:', listing);
+
   if (!listing) {
     return <Container><Typography>Listing not found</Typography></Container>;
   }
@@ -14,11 +16,10 @@ const ListingDetails = () => {
   return (
     <Container style={containerStyle}>
       <Typography variant="h4" gutterBottom>{listing.name}</Typography>
-      <Typography variant="body1" gutterBottom>{listing.name}</Typography>
       <Typography variant="body1" gutterBottom>{listing.address}</Typography>
       <Typography variant="body1" gutterBottom>{listing.hours}</Typography>
       <Typography variant="body1" gutterBottom>{listing.description}</Typography>
-      <Button component={Link} to="/listings" variant="contained" color="primary">
+      <Button component={Link} to="/listings" variant="contained" color="primary" style={{ marginTop: '20px' }}>
         Back to Listings
       </Button>
     </Container>

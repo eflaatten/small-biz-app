@@ -2,7 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ isLoggedIn, logout }) => {
+const NavBar = ({ isLoggedIn, logout, username }) => {
 
   const handleLogout = () => {
     document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -30,22 +30,37 @@ const NavBar = ({ isLoggedIn, logout }) => {
           )}
         </nav>
       </Toolbar>
+      {isLoggedIn && (
+        <Typography variant='h6' style={loggedInStyle}>
+          Logged in as {username}
+        </Typography>
+      )}
     </AppBar>
   );
 };
 
 export default NavBar;
 
-  const linkStyle = {
-    textDecoration: "none",
-    color: "inherit",
-    padding: "6px 8px",
-    fontSize: "0.875rem",
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: 500,
-    lineHeight: 1.75,
-    borderRadius: "4px",
-    letterSpacing: "0.02857em",
-    textTransform: "uppercase",
-    cursor: "pointer",
-  };
+const linkStyle = {
+  textDecoration: "none",
+  color: "inherit",
+  padding: "6px 8px",
+  fontSize: "0.875rem",
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: 500,
+  lineHeight: 1.75,
+  borderRadius: "4px",
+  letterSpacing: "0.02857em",
+  textTransform: "uppercase",
+  cursor: "pointer",
+};
+
+const loggedInStyle = {
+  flexGrow: 1,
+  backgroundColor: 'gray',
+  color: 'white',
+  paddingLeft: '10px',
+  fontSize: '0.875rem',
+  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontWeight: 500,
+}

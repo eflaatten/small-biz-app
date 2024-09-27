@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container } from '@mui/material';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddNewListing = ({ addListing }) => {
   const [name, setName] = useState('');
@@ -21,6 +23,7 @@ const AddNewListing = ({ addListing }) => {
       hours
     };
     addListing(newListing);
+    toast.success('Listing added successfully', { autoClose: 1500 });
 
     setName('');
     setDescription('');
@@ -62,6 +65,7 @@ const AddNewListing = ({ addListing }) => {
         />
         <Button color='primary' variant='contained' type='submit' style={{width: '150%'}}>Add</Button>
       </form>
+      <ToastContainer />
     </Container>
   )
 }

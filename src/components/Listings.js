@@ -2,12 +2,15 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableRow, Container } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Listings = ({ listings, isLoggedIn, removeListing }) => {
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
     removeListing(id);
+    toast.success("Listing deleted successfully", { autoClose: 1500 });
   };
 
   const handleListingNavigate = (id) => {
@@ -15,8 +18,8 @@ const Listings = ({ listings, isLoggedIn, removeListing }) => {
   }
 
   return (
-    <Container style={{ marginTop: '50px' }}>
-
+    <Container style={{ marginTop: '50px', marginBottom: '50px' }}>
+      <ToastContainer />
       {listings === undefined ? (
         <p>Loading listings...</p>
       ) : listings.length === 0 ? (

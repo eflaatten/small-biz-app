@@ -22,4 +22,30 @@ const listings = (state = [], action) => {
   }
 }
 
-export default combineReducers({ user, listings });
+const mapData = (state = { positions: {}, loading: false, error: null }, action) => {
+  switch (action.type) {
+    case "FETCH_MAP_DATA_SUCCESS":
+      return {
+        ...state,
+        positions: {
+          ...state.positions,
+          [action.payload.address]: action.payload.position, // Use address as key
+        },
+        loading: false,
+      };
+    case "FETCH_MAP_DATA_ERROR":
+      return {
+        ...state,
+        error: action.payload, // Error message
+        loading: false,
+      };
+    case "FETCH_MAP_DATA_START":
+      return {
+        ...state,
+        loading: true,
+      };
+    default:
+      return state;
+  }
+};
+export default combineReducers({ user, listings, mapData });

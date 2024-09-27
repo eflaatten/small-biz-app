@@ -1,17 +1,30 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const NavBar = ({ isLoggedIn, logout, username }) => {
 
   const handleLogout = () => {
-    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    logout();
+    try {
+      logout();
+
+      setTimeout(() => {
+        toast.success("Logout successful", { autoClose: 1500 });
+      }, 500);
+
+      document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Logout failed", { autoClose: 2000 });
+    }
   };
 
   
   return (
     <AppBar position='static'>
+      <ToastContainer />
       <Toolbar>
         <Typography variant='h6' style={{ flexGrow: 1 }}>
           Small Business Listings App

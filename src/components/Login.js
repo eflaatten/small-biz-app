@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "../redux/store";
@@ -8,22 +7,22 @@ import store from "../redux/store";
 const Login = ({ setLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = () => {
     const { user } = store.getState();
     if (username === user.username && password === user.password) {
       setLoggedIn(true);
+
+      setTimeout(() => {
+        toast.success("Login successful", { autoClose: 1500 });
+      }, 500);
       
       const setCookie = (name, value, maxAge) => {
         document.cookie = `${name}=${value};max-age=${maxAge}`;
       };
       setCookie("loggedIn", true, 60 * 1000);
-
-      navigate("/listings");
-      
     } else {
-      toast.error("Invalid username or password");
+      toast.error("Invalid username or password", { autoClose: 1500 });
     }
   };
 

@@ -31,8 +31,6 @@ To use the map functionality, you need to set up a Google Maps API key. Follow t
 
 3. Replace `your_api_key_here` with the API key you copied.
 
-4. Make sure your application loads the API key from the environment variables.
-
 By following these steps, you ensure that the API key is not committed to the repository and can be set up individually by each developer.
 
 
